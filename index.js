@@ -115,7 +115,9 @@ class DysonPlatform {
         accessory.reachable = true;
         accessory.on('identify', (paired, callback) => {
             this.log(accessory.displayName, "Identify!!!");
-            callback();
+            if (callback && typeof callback === "function") {
+                callback();
+            }
         });
 
         this.accessories.push(accessory);
